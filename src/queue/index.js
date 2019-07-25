@@ -34,7 +34,7 @@ const queue = {
 		}, 0);
 	},
 
-	push: (name, value) => {
+	push: (name, ...value) => {
 		return new Promise((resolve, reject) => {
 			queue.getQueue(name).push({value, promise: {resolve, reject}});
 
@@ -49,9 +49,9 @@ const queue = {
 			const instance = taskQueue.pop();
 
 			if(instance.promise !== undefined) {
-				callback(instance.value).then(instance.promise.resolve).catch(instance.promise.reject);
+				callback(...instance.value).then(instance.promise.resolve).catch(instance.promise.reject);
 			} else {
-				callback(instance.value);
+				callback(...instance.value);
 			}
 		} else {
 			queue.getWaiter(name).push(callback);
