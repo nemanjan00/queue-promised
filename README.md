@@ -1,4 +1,4 @@
-# queue-promise
+# queue-promised
 
 Library for rate limiting function executions. 
 
@@ -18,13 +18,13 @@ You get promise to function that can be executed later, if there are no free wor
 ## Installation
 
 ```bash
-yarn add queue-promise
+yarn add queue-promised
 ```
 
 ## Usage
 
 ```javascript
-const queuePromise = require("queue-promise");
+const queuePromise = require("queue-promised");
 
 const queue = queuePromise.queue;
 const worker = queuePromise.worker;
