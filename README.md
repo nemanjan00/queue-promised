@@ -1,5 +1,12 @@
-const queue = require("./src/queue");
-const worker = require("./src/worker");
+# queue-promise
+
+## Usage
+
+```javascript
+const queuePromise = require("queue-promise");
+
+const queue = queuePromise.queue;
+const worker = queuePromise.worker;
 
 const tester = {
 	start: () => {
@@ -32,4 +39,5 @@ const tester = {
 };
 
 tester.start();
+```
 

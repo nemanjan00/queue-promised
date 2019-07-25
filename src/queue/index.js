@@ -35,11 +35,11 @@ const queue = {
 	},
 
 	push: (name, value) => {
-		const promise = new Promise(() => {});
+		return new Promise((resolve, reject) => {
+			queue.getQueue(name).push({value, promise: {resolve, reject}});
 
-		queue.getQueue(name).push({value, promise});
-
-		queue.runWaiter(name);
+			queue.runWaiter(name);
+		});
 	},
 
 	pop: (name, callback) => {
