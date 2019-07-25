@@ -40,13 +40,13 @@ const limitedFunction = (time) => {
 	// This is worker functions. It can either return data or Promise
 	return new Promise(resolve => {
 		setTimeout(() => {
-			resolve("worker" + id + " - " + time);
+			resolve(time);
 		}, time);
-	};
+	});
 };
 
 // Add that function to worker queue 100 times
-Array(100).fill(1).map((_, id) => worker("sleeper", limitedFunction));
+Array(100).fill(1).map(() => worker("sleeper", limitedFunction));
 
 // Generate params for 1000 tasks
 const times = Array(1000).fill(1).map(() => Math.random() * 2000);
