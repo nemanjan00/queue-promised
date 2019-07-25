@@ -4,6 +4,23 @@ Library for rate limiting function executions.
 
 You get promise to function that can be executed later, if there are no free workers right now. 
 
+## Table of contents
+
+
+<!-- vim-markdown-toc GFM -->
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Authors](#authors)
+
+<!-- vim-markdown-toc -->
+
+## Installation
+
+```bash
+yarn add queue-promise
+```
+
 ## Usage
 
 ```javascript
@@ -44,4 +61,8 @@ const tester = {
 
 tester.start();
 ```
+
+## Authors
+
+* [nemanjan00](https://github.com/nemanjan00)
 
