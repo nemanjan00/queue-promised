@@ -14,6 +14,7 @@ You get promise to function that can be executed later, if there are no free wor
 
 * [Installation](#installation)
 * [Usage](#usage)
+	* [Wrapper example](#wrapper-example)
 	* [Simple example](#simple-example)
 	* [Structured example](#structured-example)
 * [Design decision](#design-decision)
@@ -30,6 +31,37 @@ yarn add queue-promised
 ```
 
 ## Usage
+
+### Wrapper example
+
+```javascript
+const queuePromise = require("queue-promised");
+
+const wrapper = queuePromise.wrapper;
+
+const limitedFunction = wrapper((time) => {
+	// This is worker functions. It can either return data or Promise
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(time);
+		}, time);
+	});
+}, 100);
+
+// Generate params for 1000 tasks
+const times = Array(1000).fill(1).map(() => Math.random() * 2000);
+
+// Run tasks
+times.forEach(time => {
+	// Run function limitedFunction with time as param
+	limitedFunction(time).then(data => {
+		console.log(data);
+	}).catch((e) => {
+		console.error(e.toString());
+	});
+});
+
+```
 
 ### Simple example
 
