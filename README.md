@@ -1,5 +1,9 @@
 # queue-promise
 
+Library for rate limiting function executions. 
+
+You get promise to function that can be executed later, if there are no free workers right now. 
+
 ## Usage
 
 ```javascript
