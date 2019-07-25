@@ -1,7 +1,7 @@
 {
   "name": "queue-promised",
   "version": "0.0.9",
-  "description": "Queue Promise",
+  "description": "Node.js library for Promising response of function from queue. ",
   "main": "index.js",
   "repository": "git@github.com:nemanjan00/queue-promised.git",
   "author": "nemanjan00 <nemanjan00@gmail.com>",
