@@ -1,6 +1,6 @@
 {
   "name": "queue-promised",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Queue Promise",
   "main": "index.js",
   "repository": "git@github.com:nemanjan00/queue-promised.git",
