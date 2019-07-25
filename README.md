@@ -1,5 +1,8 @@
 # queue-promised
 
+[![npm](https://img.shields.io/npm/dt/queue-promised)](https://www.npmjs.com/package/queue-promised)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Library for rate limiting function executions. 
 
 You get promise to function that can be executed later, if there are no free workers right now. 
