@@ -2,6 +2,7 @@ const _ = require("lodash");
 
 const queue = require("../queue");
 const worker = require("../worker");
+const promisify = require("../promisify");
 
 const uuid = require("uuid/v4");
 
@@ -10,6 +11,16 @@ const timeout = (time) => {
 		setTimeout(() => reject("timeout"), time);
 	});
 };
+
+/**
+ * Wrapper for function, for rate limiting
+ * @param {function} rateLimited - Function you want to rate limit
+ * @param {(number|Object)} [countOrOptions=1] - Count of worker instances or options object
+ * @param {number} countOrOptions.count - Count of worker instances
+ * @param {number} countOrOptions.maxTime - Maximum time in ms to execute function
+ * @param {number} countOrOptions.minTime - Minimum time to pass before response is resolved 
+ * @returns {function} rateLimited - Function you passed as param, now rate limited
+ */
 
 module.exports = (func, options) => {
 	const id = uuid();
@@ -33,7 +44,7 @@ module.exports = (func, options) => {
 
 		func = (...args) => {
 			return Promise.race([
-				oldFunc(...args),
+				promisify(oldFunc(...args)),
 				timeout(options.maxTime)
 			]);
 		};
@@ -48,7 +59,7 @@ module.exports = (func, options) => {
 
 		func = (...args) => {
 			return new Promise((resolve, reject) => {
-				const promise = oldFunc(...args);
+				const promise = promisify(oldFunc(...args));
 
 				timeout(options.minTime).catch(() => {
 					promise.then(resolve).catch(reject);

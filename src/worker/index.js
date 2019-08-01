@@ -1,12 +1,5 @@
 const queue = require("../queue");
-
-const toPromise = val => {
-	if(!(val instanceof Promise)) {
-		return Promise.resolve(val);
-	}
-	
-	return val;
-};
+const promisify = require("../promisify");
 
 module.exports = (name, work) => {
 	const worker = {
@@ -14,7 +7,7 @@ module.exports = (name, work) => {
 			queue.pop(name, (...args) => {
 				return new Promise((resolve, reject) => {
 					try {
-						toPromise(work(...args)).then((data) => {
+						promisify(work(...args)).then((data) => {
 							resolve(data);
 
 							worker.start();
