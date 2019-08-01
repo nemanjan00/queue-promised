@@ -15,7 +15,8 @@
     "lint": "./node_modules/.bin/eslint --fix .",
     "mkdocs": "./dev/makedocs.sh",
     "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "scan": "snyk test"
   },
   "husky": {
     "hooks": {
@@ -31,6 +32,7 @@
     "husky": "^3.0.2",
     "jsdoc-to-markdown": "^5.0.0",
     "mocha": "^6.2.0",
-    "nyc": "^14.1.1"
+    "nyc": "^14.1.1",
+    "snyk": "^1.208.0"
   }
 }
