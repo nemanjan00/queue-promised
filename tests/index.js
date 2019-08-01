@@ -1,2 +1,4 @@
-module.exports = {};
+describe("Unichat", function() {
+	require("./wrapper");
+});
 

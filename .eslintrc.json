@@ -1,9 +1,16 @@
 {
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
-    "extends": "eslint:recommended",
+    "plugins": [
+      "mocha"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:mocha/recommended"
+    ],
     "parserOptions": {
         "ecmaVersion": 2016
     },
@@ -24,6 +31,7 @@
             "error",
             "always"
         ],
-        "no-console": 0
+        "no-console": 0,
+        "mocha/no-setup-in-describe": 0
     }
 }
