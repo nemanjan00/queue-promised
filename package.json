@@ -16,7 +16,10 @@
     "mkdocs": "./dev/makedocs.sh",
     "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "scan": "snyk test"
+    "scan": "snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn snyk-protect",
+    "prepublish": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
