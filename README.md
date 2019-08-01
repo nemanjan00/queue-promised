@@ -77,6 +77,8 @@ times.forEach(time => {
 
 ```
 
+For more info on wrapper function, feel free to read [API docs](https://github.com/nemanjan00/queue-promised/blob/master/docs/wrapper.md).
+
 ### Advanced example
 
 If you wish to go a little deeper and to create your own rate limiting logic, this is the way to do it. 
