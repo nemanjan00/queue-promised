@@ -1,4 +1,4 @@
-# wrapper \[[Home](https://github.com/nemanjan00/queue-promised)\]
+# wrapper
 <a name="wrapper"></a>
 
 ## wrapper(rateLimited, [countOrOptions]) ⇒ <code>function</code>

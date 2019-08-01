@@ -21,6 +21,7 @@ You get promise to function that can be executed later, if there are no free wor
 * [Design decision](#design-decision)
 	* [Workers initialization](#workers-initialization)
 	* [Task execution](#task-execution)
+	* [API docs](#api-docs)
 * [Authors](#authors)
 
 <!-- vim-markdown-toc -->
@@ -169,6 +170,10 @@ In example, for each worker, I created new function, this is to demonstrate you 
 ### Task execution
 
 Task execution is done in first come - first serve manner. When function returns result, it is added to queue of workers. 
+
+### API docs
+
+You can read [API docs](https://github.com/nemanjan00/queue-promised/tree/master/docs). 
 
 ## Authors
 
