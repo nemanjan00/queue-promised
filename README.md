@@ -143,7 +143,7 @@ const tester = {
 	},
 	startWorkers: () => {
 		// Generate workers
-		_.times(100, (worker, id) => worker("sleeper", (time) => {
+		_.times(100, (id) => worker("sleeper", (time) => {
 			// This is worker functions. It can either return data or Promise
 			return new Promise(resolve => {
 				setTimeout(() => {
