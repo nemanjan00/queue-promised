@@ -23,7 +23,6 @@
   "devDependencies": {
     "eslint": "^6.1.0",
     "husky": "^3.0.2",
-    "jsdoc": "^3.6.3",
     "jsdoc-to-markdown": "^5.0.0"
   }
 }
