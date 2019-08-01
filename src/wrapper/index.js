@@ -22,7 +22,7 @@ const timeout = (time) => {
  * @returns {function} rateLimited - Function you passed as param, now rate limited
  */
 
-module.exports = (func, options) => {
+const wrapper = (func, options) => {
 	const id = uuid();
 
 	// Configuration
@@ -83,4 +83,6 @@ module.exports = (func, options) => {
 
 	return resp;
 };
+
+module.exports = wrapper;
 
