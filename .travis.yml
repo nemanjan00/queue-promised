@@ -2,9 +2,11 @@ language: node_js
 node_js:
 - 8.15.1
 install:
-  - yarn
+- yarn
 jobs:
   include:
   - stage: test
     script:
     - yarn test
+env:
+  secure: xHivqgn93/pVOCAOyeqPXKDHjSM4tJVpnL2Y7P756trHVDaIKHbFwpliRZe4ygHhahfT1GLjPwA7vMLgt/7XLwwZvO4a1Kp0ROe4Y+9aNotITmRuky0OpVfQkehKzKgJAgDhj2B69qhQdnK1ukSc6S1lTt9/zT7He2/vNS5gvH3HKfVhwKe9PCg/Yv++SQya2H1xSsMIyCx6il9fMrVzeItmH/D0pnUT1dS0gsWuDTl+AUSwVO62uSZ/WUNloxm66QbuRmLNSGF5tPDHPs65H2rXq0Azyg07OTbIBO/MHILIMJlXGs1ZZoPsjSHCggJN1r5BPCv3ZKVlTbEqCbLkmGG2eF4+1NTfWN8RoCSI/hYS8aGEL9Reox8Ps0W/tFS7nJNyK5i3xU3zwkLWcyAqYWOA2ggYxBQiScTKmcGREjCnHD8MQsoc1OraMtD+xOJ2oSDW2Q0MsAoiZFm5M1A5CSjO/UtaHQfSXisuezs3OSdvhAsJ/e+E6qG3qiW/v1SqDS5IesuDxCF0GLuptj2IePEYn2HQTXHP7B+yp06kGHZOBOkhLkLAXfxnuKA6ErAzHa2mfgE+uK1XrNGn0I6i+Ein7QAqtno0uAwuQHPc09eu/vU7EXWq98+kt56PZhhOoifda6kTgCPN30BVUiFO5FQlp5YtXCN3yGZSA3ybYO4=
