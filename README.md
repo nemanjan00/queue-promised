@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/nemanjan00/queue-promised.svg?branch=master)](https://travis-ci.org/nemanjan00/queue-promised)
 [![npm](https://img.shields.io/npm/dt/queue-promised)](https://www.npmjs.com/package/queue-promised)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Coverage Status](https://coveralls.io/repos/github/nemanjan00/queue-promised/badge.svg?branch=master)](https://coveralls.io/github/nemanjan00/queue-promised?branch=master)
 
 Library for rate limiting function executions. 
 
