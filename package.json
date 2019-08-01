@@ -12,7 +12,8 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --fix ."
+    "lint": "./node_modules/.bin/eslint --fix .",
+    "mkdocs": "./dev/makedocs.sh"
   },
   "husky": {
     "hooks": {
