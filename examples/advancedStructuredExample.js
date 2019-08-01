@@ -1,13 +1,12 @@
-const queue = require("./src/queue");
-const worker = require("./src/worker");
+const _ = require("lodash");
+
+const queue = require("../src/queue");
+const worker = require("../src/worker");
 
 const tester = {
 	start: () => {
-		// Allocate workers
-		tester.startWorkers();
-
 		// Generate params for tasks
-		const times = Array(1000).fill(1).map(() => Math.random() * 2000);
+		const times = _.times(1000, () => Math.random() * 2000);
 
 		// Run tasks
 		times.forEach(time => {
@@ -20,7 +19,7 @@ const tester = {
 	},
 	startWorkers: () => {
 		// Generate workers
-		Array(100).fill(worker).map((worker, id) => worker("sleeper", (time) => {
+		_.times(100, (id) => worker("sleeper", (time) => {
 			// This is worker functions. It can either return data or Promise
 			return new Promise(resolve => {
 				setTimeout(() => {
@@ -31,5 +30,9 @@ const tester = {
 	}
 };
 
+// Allocate workers
+tester.startWorkers();
+
+// Run tasks
 tester.start();
 

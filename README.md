@@ -9,14 +9,15 @@ You get promise to function that can be executed later, if there are no free wor
 
 ## Table of contents
 
-
 <!-- vim-markdown-toc GFM -->
 
 * [Installation](#installation)
+* [FAQ](#faq)
+	* [What are workers?](#what-are-workers)
 * [Usage](#usage)
 	* [Wrapper example](#wrapper-example)
-	* [Simple example](#simple-example)
-	* [Structured example](#structured-example)
+	* [Advanced example](#advanced-example)
+	* [Structured advanced example](#structured-advanced-example)
 * [Design decision](#design-decision)
 	* [Workers initialization](#workers-initialization)
 	* [Task execution](#task-execution)
@@ -30,11 +31,23 @@ You get promise to function that can be executed later, if there are no free wor
 yarn add queue-promised
 ```
 
+## FAQ
+
+### What are workers?
+
+Worker is just a `function` that is being called as one of the "threads". 
+
+This library does not provide any additional multithreading for javascript. 
+
 ## Usage
 
 ### Wrapper example
 
+This is the main way this library is intended to be used, just for wrapping function you want to rate limit. 
+
 ```javascript
+const _ = require("lodash");
+
 const queuePromise = require("queue-promised");
 
 const wrapper = queuePromise.wrapper;
@@ -49,7 +62,7 @@ const limitedFunction = wrapper((time) => {
 }, 100);
 
 // Generate params for 1000 tasks
-const times = Array(1000).fill(1).map(() => Math.random() * 2000);
+const times = _.times(1000, () => Math.random() * 2000);
 
 // Run tasks
 times.forEach(time => {
@@ -63,9 +76,15 @@ times.forEach(time => {
 
 ```
 
-### Simple example
+### Advanced example
+
+If you wish to go a little deeper and to create your own rate limiting logic, this is the way to do it. 
+
+For even more details, feel free to read `./src/wrapper/index.js`. 
 
 ```javascript
+const _ = require("lodash");
+
 const queuePromise = require("queue-promised");
 
 const queue = queuePromise.queue;
@@ -81,10 +100,10 @@ const limitedFunction = (time) => {
 };
 
 // Add that function to worker queue 100 times
-Array(100).fill(1).map(() => worker("sleeper", limitedFunction));
+_.times(100, () => worker("sleeper", limitedFunction));
 
 // Generate params for 1000 tasks
-const times = Array(1000).fill(1).map(() => Math.random() * 2000);
+const times = _.times(1000, () => Math.random() * 2000);
 
 // Run tasks
 times.forEach(time => {
@@ -97,7 +116,7 @@ times.forEach(time => {
 });
 ```
 
-### Structured example
+### Structured advanced example
 
 ```javascript
 const queuePromise = require("queue-promised");
@@ -107,11 +126,8 @@ const worker = queuePromise.worker;
 
 const tester = {
 	start: () => {
-		// Allocate workers
-		tester.startWorkers();
-
 		// Generate params for tasks
-		const times = Array(1000).fill(1).map(() => Math.random() * 2000);
+		const times = _.times(1000, () => Math.random() * 2000);
 
 		// Run tasks
 		times.forEach(time => {
@@ -124,7 +140,7 @@ const tester = {
 	},
 	startWorkers: () => {
 		// Generate workers
-		Array(100).fill(worker).map((worker, id) => worker("sleeper", (time) => {
+		_.times(100, (worker, id) => worker("sleeper", (time) => {
 			// This is worker functions. It can either return data or Promise
 			return new Promise(resolve => {
 				setTimeout(() => {
@@ -135,6 +151,10 @@ const tester = {
 	}
 };
 
+// Allocate workers
+tester.startWorkers();
+
+// Run tasks
 tester.start();
 ```
 
