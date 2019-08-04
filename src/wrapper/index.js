@@ -39,6 +39,7 @@ const wrapper = (func, options) => {
 	}
 
 	// Configure workers
+	// TODO: Move extensions out of module and create plugin system
 	if(options.maxTime !== undefined) {
 		const oldFunc = func;
 
@@ -77,6 +78,8 @@ const wrapper = (func, options) => {
 	};
 
 	// Exposed logic
+	// TODO: Add more external logic, for adding worker instances, for example
+
 	resp.addWorkers = (count) => {
 		_.times(count, () => worker(id, func));
 	};
