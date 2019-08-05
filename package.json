@@ -26,6 +26,9 @@
       "pre-commit": "yarn lint ; yarn test"
     }
   },
+  "nyc": {
+    "exclude": "tests/**" 
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
