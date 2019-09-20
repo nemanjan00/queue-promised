@@ -46,7 +46,7 @@ const queue = {
 		const taskQueue = queue.getQueue(name);
 
 		if(taskQueue.length > 0) {
-			const instance = taskQueue.pop();
+			const instance = taskQueue.shift();
 
 			if(instance.promise !== undefined) {
 				callback(...instance.value).then(instance.promise.resolve).catch(instance.promise.reject);

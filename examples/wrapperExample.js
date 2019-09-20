@@ -9,7 +9,7 @@ const limitedFunction = wrapper((time) => {
 			resolve(time);
 		}, time);
 	});
-}, 100);
+}, 2);
 
 // Generate params for 1000 tasks
 const times = _.times(1000, () => Math.random() * 2000);
