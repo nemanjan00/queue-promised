@@ -8,7 +8,7 @@ const uuid = require("uuid/v4");
 
 const timeout = (time) => {
 	return new Promise((resolve, reject) => {
-		setTimeout(() => reject("timeout"), time);
+		setTimeout(() => reject(new Error("timeout")), time);
 	});
 };
 
@@ -60,14 +60,12 @@ const wrapper = (func, options) => {
 
 		func = (...args) => {
 			return new Promise((resolve, reject) => {
-				const promise = promisify(oldFunc(...args));
-
 				let rejected = false;
 				let error = undefined;
 
 				let waited = false;
 
-				promise.catch((errorHandled) => {
+				const promise = promisify(oldFunc(...args)).catch((errorHandled) => {
 					rejected = true;
 					error = errorHandled;
 
