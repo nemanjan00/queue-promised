@@ -62,8 +62,28 @@ const wrapper = (func, options) => {
 			return new Promise((resolve, reject) => {
 				const promise = promisify(oldFunc(...args));
 
+				let rejected = false;
+				let error = undefined;
+
+				let waited = false;
+
+				promise.catch((errorHandled) => {
+					rejected = true;
+					error = errorHandled;
+
+					if(waited) {
+						reject(error);
+					}
+				});
+
 				timeout(options.minTime).catch(() => {
-					promise.then(resolve).catch(reject);
+					waited = true;
+
+					if(rejected) {
+						return reject(error);
+					}
+
+					promise.then(resolve);
 				});
 			});
 		};
