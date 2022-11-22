@@ -1,4 +1,8 @@
-const _ = require("lodash");
+const _ = {
+	times: (count, call) => {
+		return Array(count).fill(true).forEach(call);
+	}
+};
 
 const queue = require("../queue");
 const worker = require("../worker");
