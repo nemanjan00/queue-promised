@@ -1,25 +1,19 @@
 {
   "name": "queue-promised",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Node.js library for Promising response of function from queue. ",
   "main": "index.js",
   "repository": "git@github.com:nemanjan00/queue-promised.git",
   "author": "nemanjan00 <nemanjan00@gmail.com>",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "lodash": "^4.17.15",
-    "uuid": "^3.3.2"
-  },
+  "dependencies": {},
   "scripts": {
     "lint": "./node_modules/.bin/eslint --fix .",
     "mkdocs": "./dev/makedocs.sh",
     "test": "nyc mocha --reporter spec --timeout 60000 tests/index.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "scan": "snyk test",
-    "snyk-protect": "snyk protect",
-    "prepare": "yarn snyk-protect",
-    "prepublish": "npm run snyk-protect"
+    "scan": "snyk test"
   },
   "husky": {
     "hooks": {
@@ -40,5 +34,8 @@
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
     "snyk": "^1.208.0"
+  },
+  "engines": {
+    "node": ">=14.17"
   }
 }
