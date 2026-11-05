@@ -14,4 +14,5 @@ Wrapper for function, for rate limiting
 | countOrOptions.count | <code>number</code> |  | Count of worker instances |
 | countOrOptions.maxTime | <code>number</code> |  | Maximum time in ms to execute function |
 | countOrOptions.minTime | <code>number</code> |  | Minimum time to pass before response is resolved |
+| countOrOptions.rateLimit | <code>number</code> |  | Maximum calls per second across all workers (sets minTime) |
 
