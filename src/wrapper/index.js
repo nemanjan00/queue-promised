@@ -8,7 +8,7 @@ const queue = require("../queue");
 const worker = require("../worker");
 const promisify = require("../promisify");
 
-const uuid = require("uuid/v4");
+const uuid = require("crypto").randomUUID;
 
 const timeout = (time) => {
 	return new Promise((resolve, reject) => {
@@ -22,7 +22,8 @@ const timeout = (time) => {
  * @param {(number|Object)} [countOrOptions=1] - Count of worker instances or options object
  * @param {number} countOrOptions.count - Count of worker instances
  * @param {number} countOrOptions.maxTime - Maximum time in ms to execute function
- * @param {number} countOrOptions.minTime - Minimum time to pass before response is resolved 
+ * @param {number} countOrOptions.minTime - Minimum time to pass before response is resolved
+ * @param {number} countOrOptions.rateLimit - Maximum calls per second across all workers (sets minTime)
  * @returns {function} rateLimited - Function you passed as param, now rate limited
  */
 
@@ -40,6 +41,10 @@ const wrapper = (func, options) => {
 		options = {
 			count: options
 		};
+	} else {
+		// Copy so the caller's object is not modified, and default to one
+		// worker when only other options are given
+		options = Object.assign({ count: 1 }, options);
 	}
 
 	// Configure workers
@@ -55,8 +60,10 @@ const wrapper = (func, options) => {
 		};
 	}
 
+	// Each worker holds a call for at least minTime, so count workers make
+	// count * 1000 / minTime calls per second
 	if(options.rateLimit !== undefined) {
-		options.minTime = (1000 * options.count) / options.count;
+		options.minTime = (1000 * options.count) / options.rateLimit;
 	}
 
 	if(options.minTime !== undefined) {
